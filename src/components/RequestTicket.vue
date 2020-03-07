@@ -99,6 +99,8 @@ export default {
     if(await this.$liff.isLoggedIn()){
       let profile = await this.$liff.getProfile()
       this.profile = profile
+    }else{
+      this.$router.push({path : '/login'})
     }
   },
   computed : {
@@ -137,5 +139,8 @@ export default {
 }
 .ticket-level-box.is-active{
   border:1px solid #fc8406;
+}
+#request-ticket.container {
+  max-width: 1024px;
 }
 </style>
