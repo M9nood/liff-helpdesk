@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  LIFF_ID : '"LIFF_ID"'
+  LIFF_ID : '"1653910597-lRKePqMg"'
 })
