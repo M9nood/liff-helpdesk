@@ -103,7 +103,21 @@ export default {
     handleChangeLevel(key){
       this.formReq.level = key
     },
-    createTicket(){
+    sendMessage(){
+        this.$liff.sendMessages([
+          {
+            "type": "text",
+            "text": `Ticket ${this.formReq.subject} has been created.`
+          }
+        ]).then(() => {
+          // alert('message sent');
+        })
+        .catch((err) => {
+          alert('err' + err)
+        })
+    },
+    async createTicket(){
+      try{
       let dateNow = moment().format('YYYY-MM-DD HH:mm:ss')
       let reqData = {
         ...this.formReq,
@@ -111,22 +125,15 @@ export default {
         displayName : this.profile.displayName,
         create_date :dateNow
       }
-      let addDoc = db.collection('tickets').add(reqData).then(ref => {
+      let addDoc = await db.collection('tickets').add(reqData).then(ref => {
         console.log('Added document with ID: ', ref.id);
-        this.$liff.sendMessages([
-          {
-            "type": "sticker",
-            "packageId": "11538",
-            "stickerId": "51626501 "
-          },
-          {
-            "type": "text",
-            "text": `Ticket ${this.formReq.subject} has been created.`
-          }
-        ])
-        this.clearForm()
-        alert('Create Ticket Success')
       })
+      await this.sendMessage()
+      await this.clearForm()
+      alert('Create Ticket Success')
+      }catch(err){
+        alert('err' + err.message)
+      }
     },
     clearForm() {
       this.formReq = {
