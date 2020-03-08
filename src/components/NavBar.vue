@@ -3,7 +3,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item">
-            <img src="@/assets/help-desk-icon.png" alt="Logo"> <span style="margin-left:10px;font-weight:500">Helpdesk Liff</span>
+            <img src="@/assets/help-desk-icon.png" alt="Logo"> <span style="margin-left:10px;font-weight:500">Liff Helpdesk</span>
           </a>
           <span class="navbar-burger burger" data-target="navbarMenuHeroA">
             <span></span>
@@ -16,7 +16,7 @@
             <!-- <a class="navbar-item ">
               My ticket
             </a> -->
-            <a class="navbar-item " v-if="() => $liff.isInClient()" @click="logout">
+            <a class="navbar-item " v-if="!$liff.isInClient()" @click="logout">
               Log out
             </a>
           </div>
