@@ -1,27 +1,25 @@
-# helpdesk-liff
+# liff-helpdesk
 
-> A Vue.js project
+> liff-helpdesk is a web application project that use [LINE Front-end Framework (LIFF)](https://developers.line.biz/en/docs/liff/overview/).
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
+## Prerequisites
+* [Create channel on the LINE Developers Console](https://developers.line.me/en/docs/liff/getting-started/) for your application.
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Adding the starter app to LIFF
 
-# build for production with minification
+Add the app to LIFF. For more information, see [Adding a LIFF app](https://developers.line.me/en/docs/liff/registering-liff-apps/). Now you can get `{liffId}`
+
+## Build Project
+```
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Deployed to Firebase
+```
+firebase deploy
+```
+
+
+
+
