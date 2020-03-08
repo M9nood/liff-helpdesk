@@ -15,7 +15,7 @@ Add the app to LIFF. For more information, see [Adding a LIFF app](https://devel
 npm run build
 ```
 
-## Deployed to Firebase
+## Deploy to Firebase
 ```
 firebase deploy
 ```
