@@ -3,20 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueFirestore from 'vue-firestore';
 
-import firebase from 'firebase';
-require('firebase/firestore');
 import '@/styles/bulma.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 /* Paste your firebase configuration below */
-import config from '../firebase/config'
 
-/* Initialize firebase with your configuration */
-firebase.initializeApp(config);
+Vue.use(VueFirestore);
 
 /* Bind firebase to your Vue instance */
-Vue.prototype.$firebase = firebase;
 Vue.prototype.$liff = window.liff
 
 Vue.config.productionTip = false
