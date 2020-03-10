@@ -1,12 +1,15 @@
 <template>
 <div id="request-ticket" class="container">
   <div class="columns">
-    <div class="column" style="display:flex">
+    <div class="column is-6" style="display:flex">
       <img class="pic-user" :src="profile.pictureUrl"  alt="">
       <div style="margin-top: 5px;margin-left: 12px;">
         <div>{{profile.displayName}}</div>
         <div class="status-message">{{profile.statusMessage}}</div>
       </div>
+    </div>
+    <div class="column is-6" style="text-align:right">
+      <button class="button button-share" @click="shareLink"><i class="far fa-share-square" style="margin-right:3px" ></i>Share</button>
     </div>
   </div>
   <div class="columns">
@@ -107,10 +110,10 @@ export default {
         this.$liff.sendMessages([
           {
             "type": "text",
-            "text": `Ticket ${this.formReq.subject} has been created.`
+            "text": `Ticket ${this.formReq.subject} has been created \uDBC0\uDC96.`
           }
         ]).then(() => {
-          // alert('message sent');
+          // ]alert('message sent');
         })
         .catch((err) => {
           alert('err' + err)
@@ -141,6 +144,78 @@ export default {
         description : '',
         level : 1
       }
+    },
+    shareLink(){
+      let template = [
+        {
+          "type": "flex",
+          "altText": "Invited to try LIFF Helpdesk",
+          "contents": {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "LIFF Helpdesk",
+                  "size": "xl",
+                  "gravity": "center",
+                  "weight": "bold",
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "A Helpdesk system by LIFF",
+                  "size": "sm",
+                  "color": "#AAAAAA"
+                },
+                {
+                      "type": "box",
+                      "layout": "vertical",
+                      "margin": "xxl",
+                      "contents": [
+                        {
+                          "type": "spacer"
+                        },
+                        {
+                          "type": "image",
+                          "url": "https://firebasestorage.googleapis.com/v0/b/m9noodplay-7898c.appspot.com/o/help-desk-icon.png?alt=media",
+                          "size": "xl",
+                          "aspectMode": "cover",
+                          "action" : {
+                            "type":"uri",
+                            "label":"View details",
+                            "uri":"line://app/1653910597-OnmYBDd6",
+                            "altUri": {
+                                "desktop" : "https://m9noodplay-7898c.web.app"
+                            }
+                          }
+                        },
+                      ]
+                },
+                {
+                  "type": "text",
+                  "text": "You can create ticket quickly in LINE App. Press to try now.",
+                  "margin": "xxl",
+                  "size": "xs",
+                  "color": "#AAAAAA",
+                  "wrap": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+      this.$liff.shareTargetPicker(template)
+      .then(() => {
+        // alert('message was shared');
+      })
+      .catch((err) => {
+        console.log('sd',err)
+        alert('err' + err)
+      })
     }
   },
   async mounted () {
@@ -213,5 +288,13 @@ i.flag_normal{
 }
 i.flag_high{
   color : #ff0000
+}
+#request-ticket .button.button-share{
+  height: 30px!important;
+  padding-top: 3px!important;
+  padding-bottom: 3px!important;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
+  font-size: 12px;
 }
 </style>

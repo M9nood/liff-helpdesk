@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const RequestTicket = () => import('@/components/RequestTicket')
-const IndexHelpdesk = () => import('@/components/IndexHelpdesk')
 const Login = () => import('@/components/Login')
 const Layout = () => import('@/layouts/Layout')
 
