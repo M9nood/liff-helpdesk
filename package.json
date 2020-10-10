@@ -12,14 +12,21 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@firebase/app": "^0.6.11",
+    "@firebase/firestore": "^1.17.3",
+    "@firebase/logger": "^0.2.6",
+    "@firebase/util": "^0.3.2",
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "element-ui": "^2.13.2",
     "firebase": "^7.9.3",
     "firebase-tools": "^7.14.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
+    "vee-validate": "^3.4.0",
     "vue": "^2.5.2",
     "vue-firestore": "^0.3.30",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
