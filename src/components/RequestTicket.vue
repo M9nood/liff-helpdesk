@@ -1,6 +1,9 @@
 <template>
 <div id="request-ticket" class="container">
-  <div class="columns">
+  <div class="content-container">
+
+  </div>
+  <!-- <div class="columns">
     <div class="column is-6" style="display:flex">
       <img class="pic-user" :src="profile.pictureUrl"  alt="">
       <div style="margin-top: 5px;margin-left: 12px;">
@@ -66,7 +69,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 </div>
@@ -223,6 +226,7 @@ export default {
     if(await this.$liff.isLoggedIn()){
       let profile = await this.$liff.getProfile()
       this.profile = profile
+      this.$store.dispatch('user/setUserData', profile)
     }else{
       this.$router.push({path : '/login'})
     }
@@ -278,7 +282,8 @@ export default {
   border:3px solid #fc8406;
 }
 #request-ticket.container {
-  max-width: 1024px;
+  max-width: 1140px;
+  margin: auto;
 }
 i.flag_low{
   color : #bdbdbd

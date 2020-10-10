@@ -1,12 +1,14 @@
 <template>
-<section class="hero is-fullheight">
-<div class="hero-head">
-  <NavBar/>
+<el-container id="layout">
+  <el-header class="nav-bar-header">
+    <NavBar/>
+  </el-header>
+  <el-main >
   <div style="padding:12px">
     <router-view/>
   </div>
-</div>
-</section>
+  </el-main>
+</el-container>
 </template>
 
 <script>
@@ -18,3 +20,12 @@ export default {
   }
 }
 </script>
+
+<style>
+body{
+  margin: 0px!important;
+}
+.el-header.nav-bar-header{
+  padding: 0px 0px;
+}
+</style>
