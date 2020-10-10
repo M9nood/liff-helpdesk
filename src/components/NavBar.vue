@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-transparent">
+    <!-- <nav class="navbar is-transparent">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item">
@@ -13,29 +13,39 @@
         </div>
         <div id="navbarMenuHeroA" class="navbar-menu">
           <div class="navbar-end">
-            <!-- <a class="navbar-item ">
-              My ticket
-            </a> -->
             <a class="navbar-item " v-if="!$liff.isInClient()" @click="logout">
               Log out
             </a>
           </div>
         </div>
       </div>
-    </nav>
+    </nav> -->
+  <el-menu  class="el-menu-demo" mode="horizontal" >
+    <el-menu-item >
+      <a class="navbar-item logo">
+        <img src="@/assets/help-desk-icon.png" alt="Logo"> <span style="margin-left:10px;font-weight:500">Liff Helpdesk</span>
+      </a>
+    </el-menu-item>
+
+    <el-menu-item index="log-out" class="f-r">
+      <a v-if="!$liff.isInClient()" @click="logout">
+        <el-avatar :src="user.pictureUrl" size="small"></el-avatar>
+        Log out
+      </a>
+    </el-menu-item>
+  </el-menu>
 </template>
 
 <script>
 import $ from 'jquery'
 import liffMixin from '@/mixins/liff-mixin.js'
+import { mapGetters } from 'vuex'
+
 export default {
   mixins : [
     liffMixin
   ],
   mounted () {
-    $('.navbar-burger').click(function() {
-      $('#navbarMenuHeroA, .navbar-burger').toggleClass('is-active');
-    });
   },
   methods : {
     logout(){
@@ -47,9 +57,21 @@ export default {
       }
     }
   },
-
+  computed : {
+    ...mapGetters({
+      user : 'user/getUser'
+    })
+  },
   beforeCreate () {
 
   }
 }
 </script>
+
+<style >
+.navbar-item.logo img{
+  width : 40px;
+  height: 40px;
+}
+
+</style>

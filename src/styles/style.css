@@ -1,0 +1,10 @@
+body{
+  margin: 0px!important;
+}
+.f-r{
+  float: right!important;
+}
+.content-container{
+  margin: auto;
+  max-width: 1140px;
+}

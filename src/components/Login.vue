@@ -1,5 +1,5 @@
 <template>
-<section class="hero is-fullheight" id="Login">
+<!-- <section class="hero is-fullheight" id="Login">
   <div class="container">
     <div class="login-box">
       <div style="text-align:center;margin-top:40px" >
@@ -13,7 +13,24 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
+<el-container id="Login">
+  <el-col :md="12" :sm="24" class="banner__desc">
+    <div class="login-box">
+      <div class="banner__desc__app-name">
+        <img src="@/assets/help-desk-icon.png" alt="Logo" width="60px">
+        <div style="margin-top: 12px;margin-left: 12px;">Helpdesk Liff</div>
+      </div>
+      <div style="margin-top:20px">
+        <el-button type="success" class="login-with-line" round  @click="login"><i class="fab fa-line" style="font-size:24px;margin-right: 12px;"></i> Log in with LINE</el-button>
+      </div>
+    </div>
+  </el-col>
+  <el-col :md="12" :sm="24">
+    <img class="banner" src="@/assets/images/cus-support2.jpg" alt="">
+  </el-col>
+
+</el-container>
 </template>
 <script>
 import liffMixin from '@/mixins/liff-mixin.js'
@@ -36,22 +53,16 @@ export default {
 #Login .login-box{
   width: 100%;
   max-width: 400px;
-  height: 400px;
+  height: 150px;
   position: relative;
   background-color: #fff;
-  top: 20vh;
-  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.07);
-  border-radius: 10px;
-  /* border:1px solid #e0e0e0; */
+  top: 40vh;
   padding: 30px 30px;
   margin: auto;
 }
 #Login .login-with-line{
-  background: #00C300;
-  border-color: #00C300;
-  color:#fff;
-  width: 100%;
-  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
 }
 #Login .app-name{
   margin-top: 15px;
@@ -64,5 +75,18 @@ export default {
   max-width: 1024px;
   text-align: center;
 }
-
+#Login {
+  width: -webkit-fill-available;
+  height: 100vh;
+}
+.banner{
+  width: 100%;
+  position: fixed;
+  max-width: 800px;
+  top: 20%;
+}
+.banner__desc__app-name{
+  font-size: 36px;
+  display: flex;
+}
 </style>
