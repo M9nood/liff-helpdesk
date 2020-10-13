@@ -1,25 +1,4 @@
 <template>
-    <!-- <nav class="navbar is-transparent">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="@/assets/help-desk-icon.png" alt="Logo"> <span style="margin-left:10px;font-weight:500">Liff Helpdesk</span>
-          </a>
-          <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item " v-if="!$liff.isInClient()" @click="logout">
-              Log out
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav> -->
   <el-menu  class="el-menu-demo" mode="horizontal" >
     <el-menu-item >
       <a class="navbar-item logo">
