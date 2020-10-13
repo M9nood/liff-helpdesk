@@ -1,21 +1,6 @@
 <template>
-<!-- <section class="hero is-fullheight" id="Login">
-  <div class="container">
-    <div class="login-box">
-      <div style="text-align:center;margin-top:40px" >
-       <img src="@/assets/help-desk-icon.png" alt="Logo" width="60px">
-       <div>
-         <div class="app-name">LIFF Helpdesk</div>
-       </div>
-      </div>
-      <div style="text-align:center;margin-top:50px">
-        <button class="button login-with-line" @click="login"><i class="fab fa-line" style="font-size:24px;margin-right: 12px;"></i> Log in with LINE</button>
-      </div>
-    </div>
-  </div>
-</section> -->
-<el-container id="Login">
-  <el-col :md="12" :sm="24" class="banner__desc">
+<div id="Login" v-if="window.screen != 'mobile'">
+  <el-col :md="12" :sm="24" :xs="24" class="banner__desc">
     <div class="login-box">
       <div class="banner__desc__app-name">
         <img src="@/assets/help-desk-icon.png" alt="Logo" width="60px">
@@ -26,17 +11,36 @@
       </div>
     </div>
   </el-col>
-  <el-col :md="12" :sm="24">
+  <el-col :md="12" :sm="24" :xs="24" >
     <img class="banner" src="@/assets/images/cus-support2.jpg" alt="">
   </el-col>
+</div>
 
-</el-container>
+<div id="Login" v-else>
+  <el-col :span="24" class="banner__desc">
+    <img class="banner is-mobile" src="@/assets/images/cus-support2.jpg" alt="">
+  </el-col>
+  <el-col :span="24" class="banner__desc">
+  <div class="login-box is-mobile">
+    <div class="banner__desc__app-name">
+      <img src="@/assets/help-desk-icon.png" alt="Logo" width="60px">
+      <div style="margin-top: 12px;margin-left: 12px;">Helpdesk Liff</div>
+    </div>
+    <div style="margin-top:20px">
+      <el-button type="success" class="login-with-line" round  @click="login"><i class="fab fa-line" style="font-size:24px;margin-right: 12px;"></i> Log in with LINE</el-button>
+    </div>
+  </div>
+</el-col>
+</div>
 </template>
 <script>
 import liffMixin from '@/mixins/liff-mixin.js'
+import resizeMixin from '@/mixins/resize-mixin.js'
+
 export default {
   mixins : [
-    liffMixin
+    liffMixin,
+    resizeMixin
   ],
   methods: {
     login(){
@@ -59,6 +63,10 @@ export default {
   top: 40vh;
   padding: 30px 30px;
   margin: auto;
+}
+#Login .login-box.is-mobile{
+  top: 58vh;
+  width: -webkit-fill-available;
 }
 #Login .login-with-line{
   font-weight: 700;
@@ -84,6 +92,10 @@ export default {
   position: fixed;
   max-width: 800px;
   top: 20%;
+}
+.banner.is-mobile{
+  top: 0;
+  position: absolute;
 }
 .banner__desc__app-name{
   font-size: 36px;

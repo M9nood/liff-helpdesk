@@ -4,7 +4,7 @@
     <NavBar/>
   </el-header>
   <el-main >
-  <div style="padding:12px">
+  <div >
     <router-view/>
   </div>
   </el-main>
