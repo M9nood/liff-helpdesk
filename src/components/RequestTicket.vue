@@ -1,8 +1,11 @@
 <template>
 <div id="request-ticket" class="container">
   <div class="content-container">
-
+    <el-row>
+      Ticket
+    </el-row>
   </div>
+
   <!-- <div class="columns">
     <div class="column is-6" style="display:flex">
       <img class="pic-user" :src="profile.pictureUrl"  alt="">
@@ -77,6 +80,7 @@
 
 <script>
 import liffMixin from '@/mixins/liff-mixin.js'
+import resizeMixin from '@/mixins/resize-mixin.js'
 import moment from 'moment'
 import db  from '../../firebase/firebase'
 
@@ -103,7 +107,8 @@ export default {
     }
   },
   mixins : [
-    liffMixin
+    liffMixin,
+    resizeMixin
   ],
   methods : {
     handleChangeLevel(key){
