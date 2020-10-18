@@ -21,6 +21,6 @@ firebase deploy
 ```
 
 ## Live Demo
-[https://m9noodplay-7898c.web.app](https://m9noodplay-7898c.web.app)
+[https://liff.line.me/1653910597-OnmYBDd6](https://liff.line.me/1653910597-OnmYBDd6)
 
 
