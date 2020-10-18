@@ -52,3 +52,14 @@ body{
 .action-card-button.el-button+.action-card-button.el-button {
   margin-left: 1px;
 }
+
+.el-message-box{
+  width: 90%;
+  max-width: 400px;
+}
+
+.el-message {
+  width:90%;
+  min-width: 100px!important;
+  max-width: 1140px;
+}
