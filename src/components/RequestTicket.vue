@@ -12,8 +12,18 @@
           <div slot="header" class="clearfix">
             <span>{{ticket.subject}}</span>
             <div class="card-box-action">
-              <el-button class="action-card-button" size="small" ><i :class="['fas fa-flag',{'flag_low' : ticket.level == 1},{'flag_normal' : ticket.level == 2},{'flag_high' : ticket.level == 3}]"></i></el-button>
-              <el-button class="action-card-button" type="danger" size="small" icon="el-icon-delete"></el-button>
+              <el-dropdown  @command="updateLevel">
+                <span class="el-dropdown-link">
+                  <el-button slot="reference" class="action-card-button" size="small" ><i :class="['fas fa-flag',{'flag_low' : ticket.level == 1},{'flag_normal' : ticket.level == 2},{'flag_high' : ticket.level == 3}]"></i></el-button>
+                </span>
+                <el-dropdown-menu slot="dropdown" trigger="click">
+                  <el-dropdown-item :command="{key : ticket['.key'], level : 1}"><i class="fas fa-flag flag_low"></i> Low</el-dropdown-item>
+                  <el-dropdown-item :command="{key : ticket['.key'], level : 2}"><i class="fas fa-flag flag_normal"></i> Medium</el-dropdown-item>
+                  <el-dropdown-item :command="{key : ticket['.key'], level : 3}"><i class="fas fa-flag flag_high"></i> High</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+
+              <el-button class="action-card-button" type="danger" size="small" icon="el-icon-delete" @click="deleteTicketHandle(ticket)"></el-button>
             </div>
           </div>
           <div class="cesc">{{ticket.description}}</div>
@@ -127,12 +137,11 @@ export default {
               create_date :dateNow
             }
             let addDoc = await db.collection('tickets').add(reqData).then(ref => {
-              console.log('Added document with ID: ', ref.id);
+              // console.log('Added document with ID: ', ref.id);
             })
             await this.sendMessage()
             await this.clearForm()
-            this.$notify({
-              title: 'Success',
+            this.$message({
               message: 'Ticket has been created.',
               type: 'success'
             })
@@ -240,15 +249,44 @@ export default {
       }, 2000);
     },
     handleClose(){
+      this.$refs['addTicketForm'].clearValidate()
       this.dialogTicketVisible = false
-      this.$ref['addTicketForm'].clearValidate()
       this.clearForm()
+    },
+    deleteTicketHandle(data) {
+      this.$confirm(`Confirm delete ticket <b>${data.subject}</b>`, 'Warning', {
+        confirmButtonText: 'Comfirm',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+        dangerouslyUseHTMLString: true
+      }).then(() => {
+        this.deleteTicket(data['.key'])
+      }).catch(() => {
+
+      });
+    },
+    deleteTicket(key){
+      db.collection("tickets").doc(key).delete().then(() => {
+        this.$message({
+          type : 'success',
+          message: 'Delete completed'
+        });
+      }).catch(function(error) {
+          console.error("Error removing document: ", error);
+      });
+    },
+    updateLevel(command){
+      db.collection("tickets").doc(command.key).update({level: command.level}).then(() => {
+        console.error("Update completed");
+      }).catch(function(error) {
+        console.error("Error update document: ", error);
+      });
     }
   },
   async mounted () {
     await this.initLiff()
-    this.loadingPage()
     if(await this.$liff.isLoggedIn()){
+      this.loadingPage()
       let profile = await this.$liff.getProfile()
       this.profile = profile
       this.$store.dispatch('user/setUserData', profile)
